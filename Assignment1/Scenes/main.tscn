@@ -1,0 +1,108 @@
+[gd_scene load_steps=8 format=3 uid="uid://65gmxnwhkj65"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_bam4x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_60wnu"]
+size = Vector2(40, 40)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_tlp0f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eber4"]
+size = Vector2(100, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ik22"]
+size = Vector2(1149, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dq2fv"]
+size = Vector2(20, 661)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7liwj"]
+size = Vector2(2036, 44)
+
+[node name="Main" type="Node2D"]
+
+[node name="Ball" type="CharacterBody2D" parent="."]
+visible = false
+position = Vector2(570, 419)
+motion_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball"]
+scale = Vector2(40, 40)
+texture = SubResource("CanvasTexture_bam4x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("RectangleShape2D_60wnu")
+
+[node name="SlowMo" type="Timer" parent="Ball"]
+wait_time = 5.0
+one_shot = true
+
+[node name="Paddle" type="CharacterBody2D" parent="." groups=["Paddle"]]
+position = Vector2(695, 579)
+motion_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Paddle"]
+scale = Vector2(100, 40)
+texture = SubResource("CanvasTexture_tlp0f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle"]
+shape = SubResource("RectangleShape2D_eber4")
+
+[node name="Left_wall3" type="StaticBody2D" parent="."]
+position = Vector2(296, -351)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left_wall3"]
+position = Vector2(280.5, 330.5)
+shape = SubResource("RectangleShape2D_8ik22")
+
+[node name="Left_wall2" type="StaticBody2D" parent="."]
+position = Vector2(1178, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left_wall2"]
+position = Vector2(-13, 321)
+shape = SubResource("RectangleShape2D_dq2fv")
+
+[node name="Left_wall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left_wall"]
+position = Vector2(-13, 321)
+shape = SubResource("RectangleShape2D_dq2fv")
+
+[node name="Score" type="RichTextLabel" parent="."]
+offset_left = 18.0
+offset_top = 17.0
+offset_right = 595.0
+offset_bottom = 114.0
+theme_override_font_sizes/normal_font_size = 40
+text = "SCORE: 0"
+
+[node name="StartText" type="RichTextLabel" parent="."]
+offset_left = 417.0
+offset_top = 388.0
+offset_right = 752.0
+offset_bottom = 483.0
+theme_override_font_sizes/normal_font_size = 40
+text = "[CLICK TO START]"
+
+[node name="GameOver" type="StaticBody2D" parent="." groups=["GameOver"]]
+position = Vector2(539, 697)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameOver"]
+shape = SubResource("RectangleShape2D_7liwj")
+
+[node name="BrickManager" type="Node2D" parent="."]
+
+[node name="SlowMo" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+position = Vector2(832, 418)
+script = null
+
+[connection signal="timeout" from="Ball/SlowMo" to="Ball" method="_on_slow_mo_timeout"]

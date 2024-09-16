@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://8h0evjr84exi"]
+
+[ext_resource type="Script" path="res://scripts/startscreen.gd" id="1_uhlrp"]
+[ext_resource type="Theme" uid="uid://drw0oqo3emu5q" path="res://themes/game_over_screen.tres" id="2_wceng"]
+[ext_resource type="Theme" uid="uid://df6jqbknhewa8" path="res://themes/new_theme.tres" id="3_bykul"]
+
+[sub_resource type="Theme" id="Theme_d0iy5"]
+
+[node name="StartScreen" type="CanvasLayer"]
+script = ExtResource("1_uhlrp")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+theme = ExtResource("2_wceng")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme = SubResource("Theme_d0iy5")
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 128
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "WELCOME TO FISHY BREAKOUT"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Start" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+theme = ExtResource("3_bykul")
+theme_override_font_sizes/font_size = 64
+text = "START"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/CenterContainer/Start" to="." method="_on_start_pressed"]

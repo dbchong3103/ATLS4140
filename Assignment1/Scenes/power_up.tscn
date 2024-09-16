@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://1xgvsfofogap"]
+
+[ext_resource type="Texture2D" uid="uid://6e7n3xlivwnv" path="res://assets/powerupbrick.png" id="1_ifpys"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5alux"]
+size = Vector2(122, 32)
+
+[node name="PowerUp" type="Node2D" groups=["DoublePower"]]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["Bricks", "DoublePower"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("1_ifpys")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_5alux")

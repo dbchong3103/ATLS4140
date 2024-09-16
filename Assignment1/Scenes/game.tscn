@@ -1,0 +1,225 @@
+[gd_scene load_steps=22 format=3 uid="uid://l0rr57oprgsp"]
+
+[ext_resource type="Texture2D" uid="uid://cu0ay3vptfur1" path="res://assets/background.png" id="1_71a38"]
+[ext_resource type="Script" path="res://scripts/brick_manager.gd" id="1_seqnk"]
+[ext_resource type="PackedScene" uid="uid://cnry48wfjt8qe" path="res://scenes/ball.tscn" id="1_xo3d5"]
+[ext_resource type="PackedScene" uid="uid://dc7igec3opbb1" path="res://scenes/paddle.tscn" id="3_48m66"]
+[ext_resource type="Script" path="res://scripts/ball.gd" id="4_werd0"]
+[ext_resource type="PackedScene" uid="uid://dmgrx57du3uyv" path="res://scenes/evilfish.tscn" id="6_uo3dc"]
+[ext_resource type="PackedScene" uid="uid://1xgvsfofogap" path="res://scenes/power_up.tscn" id="7_kma3v"]
+[ext_resource type="PackedScene" uid="uid://djeq8py5qgmlp" path="res://scenes/sharkie.tscn" id="8_c3p3b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v7sps"]
+size = Vector2(36, 640)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k6c2j"]
+size = Vector2(1161, 36.75)
+
+[sub_resource type="Animation" id="Animation_inev6"]
+length = 5.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1020, 340), Vector2(-131, 300)]
+}
+
+[sub_resource type="Animation" id="Animation_ulako"]
+resource_name = "move"
+length = 5.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1020, 340), Vector2(-128, 330)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yy6jq"]
+_data = {
+"RESET": SubResource("Animation_inev6"),
+"move": SubResource("Animation_ulako")
+}
+
+[sub_resource type="Animation" id="Animation_tfau0"]
+length = 10.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4, 6, 7.96667, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-146, 373), Vector2(104, 231), Vector2(381, 373), Vector2(619, 220), Vector2(812, 389), Vector2(1019, 275)]
+}
+
+[sub_resource type="Animation" id="Animation_jpp35"]
+resource_name = "moce"
+length = 5.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-146, 373), Vector2(1011, 376)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u833c"]
+_data = {
+"RESET": SubResource("Animation_tfau0"),
+"moce": SubResource("Animation_jpp35")
+}
+
+[sub_resource type="Animation" id="Animation_gvgdo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-127, 147)]
+}
+
+[sub_resource type="Animation" id="Animation_70jce"]
+resource_name = "move"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-127, 147), Vector2(449, 279), Vector2(1020, 126)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pk5g5"]
+_data = {
+"RESET": SubResource("Animation_gvgdo"),
+"move": SubResource("Animation_70jce")
+}
+
+[sub_resource type="GDScript" id="GDScript_tgevs"]
+script/source = "extends RichTextLabel
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mwldd"]
+size = Vector2(1231, 20)
+
+[node name="Game" type="Node2D"]
+position = Vector2(124, 0)
+script = ExtResource("1_seqnk")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(461, 254)
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(455, 254)
+scale = Vector2(0.901562, 1)
+texture = ExtResource("1_71a38")
+
+[node name="Border" type="StaticBody2D" parent="."]
+position = Vector2(468, 242)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border"]
+position = Vector2(583, 9)
+shape = SubResource("RectangleShape2D_v7sps")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Border"]
+position = Vector2(-610, 11)
+shape = SubResource("RectangleShape2D_v7sps")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Border"]
+position = Vector2(-11.5, -326.625)
+shape = SubResource("RectangleShape2D_k6c2j")
+
+[node name="Ball" parent="." groups=["Ball"] instance=ExtResource("1_xo3d5")]
+position = Vector2(457, 373)
+script = ExtResource("4_werd0")
+
+[node name="Paddle" parent="." groups=["Paddle"] instance=ExtResource("3_48m66")]
+position = Vector2(-60, 558)
+
+[node name="PowerUp" parent="." groups=["Bricks", "Power"] instance=ExtResource("7_kma3v")]
+position = Vector2(1020, 340)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PowerUp"]
+libraries = {
+"": SubResource("AnimationLibrary_yy6jq")
+}
+autoplay = "RESET"
+
+[node name="Evilfish" parent="." groups=["Evilfish"] instance=ExtResource("6_uo3dc")]
+position = Vector2(-146, 373)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Evilfish"]
+libraries = {
+"": SubResource("AnimationLibrary_u833c")
+}
+autoplay = "RESET"
+
+[node name="Sharkie" parent="." instance=ExtResource("8_c3p3b")]
+position = Vector2(-127, 147)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sharkie"]
+libraries = {
+"": SubResource("AnimationLibrary_pk5g5")
+}
+autoplay = "move"
+
+[node name="ScoreText" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+offset_left = 933.0
+offset_top = 405.0
+offset_right = 1018.0
+offset_bottom = 445.0
+text = "SCORE: 0"
+script = SubResource("GDScript_tgevs")
+
+[node name="Killzone" type="CharacterBody2D" parent="." groups=["GameOver"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(456, 654)
+shape = SubResource("RectangleShape2D_mwldd")

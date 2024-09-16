@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://pswemohf2hoi"]
+
+[ext_resource type="Script" path="res://scripts/ball2.gd" id="1_7j85d"]
+[ext_resource type="Texture2D" uid="uid://bqxq687mgt4xo" path="res://assets/ball2.png" id="2_536ob"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oripj"]
+radius = 20.2237
+
+[node name="ball2" type="Node2D"]
+
+[node name="ball2" type="CharacterBody2D" parent="."]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_7j85d")
+
+[node name="Sprite2D" type="Sprite2D" parent="ball2"]
+texture = ExtResource("2_536ob")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ball2"]
+shape = SubResource("CircleShape2D_oripj")
+
+[node name="BonusText" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+offset_left = -38.0
+offset_top = 17.0
+offset_right = 162.0
+offset_bottom = 48.0
+text = "BONUS: 0"

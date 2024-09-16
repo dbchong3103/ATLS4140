@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://beabsemla4elc"]
+
+[ext_resource type="Script" path="res://scripts/killzone.gd" id="1_lbsmh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hvody"]
+size = Vector2(1454, 20)
+
+[node name="Killzone" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_lbsmh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(717, 0)
+shape = SubResource("RectangleShape2D_hvody")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="Area2D" method="_on_timer_timeout"]

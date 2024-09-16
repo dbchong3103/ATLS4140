@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://djfv8g2ihdyge"]
+
+[ext_resource type="Texture2D" uid="uid://b2g4uvqn1qv5p" path="res://assets/regularbrick.png" id="1_10jaw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2q5t"]
+size = Vector2(123, 34)
+
+[node name="Brick" type="Node2D"]
+position = Vector2(0, -1)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["Bricks"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("1_10jaw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_f2q5t")
