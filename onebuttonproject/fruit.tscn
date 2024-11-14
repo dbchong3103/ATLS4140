@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxq64e4ewphpi"]
+
+[ext_resource type="Texture2D" uid="uid://dcbqxp1ygd776" path="res://Assets/brackeys_platformer_assets/sprites/fruit.png" id="1_8nj1s"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6g3y0"]
+radius = 6.0
+
+[node name="fruit" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_6g3y0")
+
+[node name="Fruit" type="Sprite2D" parent="."]
+position = Vector2(1, 0)
+texture = ExtResource("1_8nj1s")
+hframes = 4
+vframes = 4

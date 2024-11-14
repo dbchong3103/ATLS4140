@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://cs813uwwlo2p5"]
+
+[ext_resource type="Texture2D" uid="uid://pecvxcun0a4" path="res://Assets/brackeys_platformer_assets/sprites/slime_purple.png" id="1_cynsv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ndekr"]
+size = Vector2(22.2821, 667.245)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1emvp"]
+atlas = ExtResource("1_cynsv")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uel5n"]
+atlas = ExtResource("1_cynsv")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plnew"]
+atlas = ExtResource("1_cynsv")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tmr0"]
+atlas = ExtResource("1_cynsv")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hk31c"]
+atlas = ExtResource("1_cynsv")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjdmu"]
+atlas = ExtResource("1_cynsv")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rpy51"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1emvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uel5n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_plnew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tmr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hk31c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjdmu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="Chomper" type="CharacterBody2D"]
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.249994, -0.378476)
+rotation = -3.14159
+scale = Vector2(1.0771, -0.0438266)
+shape = SubResource("RectangleShape2D_ndekr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -10)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_rpy51")
+autoplay = "default"
+frame_progress = 0.390658

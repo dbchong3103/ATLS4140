@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwtbx5v734akk"]
+
+[ext_resource type="Texture2D" uid="uid://bsd4b7k0u4xox" path="res://Assets/Foozle_2DS0011_Void_MainShip/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Bases/PNGs/Main Ship - Base - Full health.png" id="1_foqyl"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pg16p"]
+radius = 19.0
+height = 126.0
+
+[node name="Ship" type="CharacterBody2D"]
+
+[node name="MainShip-Base-FullHealth" type="Sprite2D" parent="."]
+position = Vector2(559, 321)
+scale = Vector2(5.52083, 5.52083)
+texture = ExtResource("1_foqyl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(559, 321)
+shape = SubResource("CapsuleShape2D_pg16p")

@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://bkmuwonvgxo1c"]
+
+[ext_resource type="Texture2D" uid="uid://b4soljtmer10m" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 8/1.png" id="1_gwi68"]
+[ext_resource type="Texture2D" uid="uid://cs6gj8qcsyuwi" path="res://Assets/CelestialObjects/CelestialObjects.png" id="2_hj1wk"]
+[ext_resource type="Texture2D" uid="uid://27pslwlak7wo" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 8/2.png" id="3_aqvdm"]
+[ext_resource type="Texture2D" uid="uid://bpenc4d31owhh" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 8/3.png" id="4_xxkvf"]
+[ext_resource type="Texture2D" uid="uid://cwbkppxfn3swg" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 8/4.png" id="5_h74y4"]
+
+[node name="Level3" type="Node2D"]
+
+[node name="1" type="Sprite2D" parent="."]
+position = Vector2(578, 323.5)
+scale = Vector2(2, 2.00926)
+texture = ExtResource("1_gwi68")
+
+[node name="CelestialObjects" type="Sprite2D" parent="."]
+position = Vector2(830, 282)
+scale = Vector2(6.53125, 6.53125)
+texture = ExtResource("2_hj1wk")
+hframes = 6
+vframes = 4
+frame = 2
+
+[node name="2" type="Sprite2D" parent="."]
+position = Vector2(578, 325)
+scale = Vector2(2.00347, 2)
+texture = ExtResource("3_aqvdm")
+
+[node name="3" type="Sprite2D" parent="."]
+position = Vector2(576.5, 326.5)
+scale = Vector2(2.00521, 1.99691)
+texture = ExtResource("4_xxkvf")
+
+[node name="4" type="Sprite2D" parent="."]
+position = Vector2(579, 325)
+scale = Vector2(2.00347, 2)
+texture = ExtResource("5_h74y4")

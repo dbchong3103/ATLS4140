@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://bagpimmecnxco"]
+
+[ext_resource type="Texture2D" uid="uid://dbe3inqsrm8qt" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 6/1.png" id="1_ktvac"]
+[ext_resource type="Texture2D" uid="uid://cs6gj8qcsyuwi" path="res://Assets/CelestialObjects/CelestialObjects.png" id="2_ln2gm"]
+[ext_resource type="Texture2D" uid="uid://bvjtofmq24sfl" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 6/2.png" id="3_qogsj"]
+[ext_resource type="Texture2D" uid="uid://cryglbp3wkwmh" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 6/3.png" id="4_mqllh"]
+[ext_resource type="Texture2D" uid="uid://ca4ddx6g7imts" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 6/4.png" id="5_85ug5"]
+[ext_resource type="Texture2D" uid="uid://dwg05gpclilhm" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 6/5.png" id="6_q8jbq"]
+[ext_resource type="Texture2D" uid="uid://bgukwfmksswdr" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 6/6.png" id="7_xckvn"]
+
+[sub_resource type="Curve2D" id="Curve2D_nwbvy"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 207, 380, 0, 0, 0, 0, 322, 175, 0, 0, 0, 0, 844, 51, 0, 0, 0, 0, 1012, 296, 0, 0, 0, 0, 882, 536, 0, 0, 0, 0, 611, 594, 0, 0, 0, 0, 362, 541, 0, 0, 0, 0, 207, 380)
+}
+point_count = 8
+
+[node name="Level 1" type="Node2D"]
+
+[node name="1" type="Sprite2D" parent="."]
+position = Vector2(575.363, 322.611)
+scale = Vector2(1.99874, 1.98389)
+texture = ExtResource("1_ktvac")
+
+[node name="CelestialObjects" type="Sprite2D" parent="."]
+position = Vector2(586, 343)
+scale = Vector2(5.80981, 5.80981)
+texture = ExtResource("2_ln2gm")
+hframes = 6
+vframes = 4
+frame = 1
+
+[node name="2" type="Sprite2D" parent="."]
+position = Vector2(576, 320.5)
+scale = Vector2(2, 1.9784)
+texture = ExtResource("3_qogsj")
+
+[node name="3" type="Sprite2D" parent="."]
+position = Vector2(575.5, 321.5)
+scale = Vector2(1.99132, 1.9784)
+texture = ExtResource("4_mqllh")
+
+[node name="4" type="Sprite2D" parent="."]
+position = Vector2(575.5, 322.5)
+scale = Vector2(1.99479, 1.99074)
+texture = ExtResource("5_85ug5")
+
+[node name="5" type="Sprite2D" parent="."]
+position = Vector2(574.5, 321.5)
+scale = Vector2(1.99826, 1.9784)
+texture = ExtResource("6_q8jbq")
+
+[node name="6" type="Sprite2D" parent="."]
+position = Vector2(579, 323)
+scale = Vector2(1.98611, 1.97531)
+texture = ExtResource("7_xckvn")
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(-33, 0)
+curve = SubResource("Curve2D_nwbvy")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(207, 380)
+rotation = -1.05957
