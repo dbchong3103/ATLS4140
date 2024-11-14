@@ -19,5 +19,7 @@ Inspirations:
 - Minecraft Dungeons - Variety of Weaponry and skill items
 - Nitrome Must Die - Movement and style reference
 - Super Mario (The Old ones) - Movement and Level Reference
+- Maplestory
 
 Storyboards (For the Skills):
+![20241114_044711](https://github.com/user-attachments/assets/93d1ff48-ec4e-4371-9742-4b3a83ecf197)
