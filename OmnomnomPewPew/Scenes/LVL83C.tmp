@@ -1,0 +1,113 @@
+[gd_scene load_steps=12 format=3 uid="uid://bqxlsuyyo1lqy"]
+
+[ext_resource type="Texture2D" uid="uid://cn5vw14i517hv" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 5/1.png" id="1_ujv7f"]
+[ext_resource type="Script" path="res://Scenes/lvl_1.gd" id="1_wibvk"]
+[ext_resource type="Texture2D" uid="uid://cs6gj8qcsyuwi" path="res://Assets/CelestialObjects/CelestialObjects.png" id="2_q21ux"]
+[ext_resource type="Texture2D" uid="uid://c77lgq420gc2s" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 5/3.png" id="3_4hn7j"]
+[ext_resource type="Texture2D" uid="uid://b8qbswgluivx3" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 5/4.png" id="4_sy13s"]
+[ext_resource type="Texture2D" uid="uid://cbvq0eclehx2l" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 5/5.png" id="5_pufhw"]
+[ext_resource type="PackedScene" uid="uid://cs813uwwlo2p5" path="res://Scenes/chomper.tscn" id="6_dtgtw"]
+[ext_resource type="Script" path="res://Scripts/chomper.gd" id="7_eidni"]
+[ext_resource type="PackedScene" uid="uid://bxq64e4ewphpi" path="res://fruit.tscn" id="10_6cv63"]
+[ext_resource type="PackedScene" uid="uid://cjf5l6ywjf6bt" path="res://Scenes/hud.tscn" id="10_h627u"]
+
+[sub_resource type="Curve2D" id="Curve2D_7u0mj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 190, 127, 0, 0, 0, 0, 1060, 124, 0, 0, 0, 0, 1067, 556, 0, 0, 0, 0, 194, 556, 0, 0, 0, 0, 190, 127)
+}
+point_count = 5
+
+[node name="Level2" type="Node2D"]
+script = ExtResource("1_wibvk")
+
+[node name="1" type="Sprite2D" parent="."]
+position = Vector2(576, 327.25)
+scale = Vector2(1.99653, 2.02315)
+texture = ExtResource("1_ujv7f")
+
+[node name="CelestialObjects" type="Sprite2D" parent="."]
+position = Vector2(797, 216)
+scale = Vector2(5.45899, 5.43007)
+texture = ExtResource("2_q21ux")
+hframes = 6
+vframes = 4
+frame = 6
+
+[node name="3" type="Sprite2D" parent="."]
+position = Vector2(577.5, 325)
+scale = Vector2(1.99479, 2)
+texture = ExtResource("3_4hn7j")
+
+[node name="4" type="Sprite2D" parent="."]
+position = Vector2(575, 325)
+scale = Vector2(1.99479, 1.99691)
+texture = ExtResource("4_sy13s")
+
+[node name="5" type="Sprite2D" parent="."]
+position = Vector2(577, 323)
+scale = Vector2(2.01389, 2.01235)
+texture = ExtResource("5_pufhw")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(144, 101, 148, 530, 1021, 529, 1011, 100, 145, 102)
+width = 5.0
+default_color = Color(0.12324, 0.418187, 0.669285, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(575, 330)
+
+[node name="Path2D" type="Path2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-46, -24)
+curve = SubResource("Curve2D_7u0mj")
+
+[node name="Line2D" type="Line2D" parent="Path2D"]
+width = 5.0
+default_color = Color(0.0752422, 0.305483, 0.460402, 1)
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+unique_name_in_owner = true
+position = Vector2(190, 127)
+rotates = false
+
+[node name="Chomper" parent="Path2D/PathFollow2D" instance=ExtResource("6_dtgtw")]
+up_direction = Vector2(0, 1)
+floor_stop_on_slope = false
+floor_constant_speed = true
+floor_block_on_wall = false
+floor_max_angle = 0.0
+script = ExtResource("7_eidni")
+
+[node name="Node" type="Node" parent="."]
+
+[node name="fruitff" parent="Node" instance=ExtResource("10_6cv63")]
+position = Vector2(420, 102)
+
+[node name="fruitff2" parent="Node" instance=ExtResource("10_6cv63")]
+position = Vector2(722, 100)
+
+[node name="fruitff3" parent="Node" instance=ExtResource("10_6cv63")]
+position = Vector2(947, 99)
+
+[node name="fruitff4" parent="Node" instance=ExtResource("10_6cv63")]
+position = Vector2(145, 434)
+
+[node name="fruitff5" parent="Node" instance=ExtResource("10_6cv63")]
+position = Vector2(1020, 470)
+
+[node name="fruitff6" parent="Node" instance=ExtResource("10_6cv63")]
+position = Vector2(146, 235)
+
+[node name="fruitff7" parent="Node" instance=ExtResource("10_6cv63")]
+position = Vector2(277, 530)
+
+[node name="fruitff8" parent="Node" instance=ExtResource("10_6cv63")]
+position = Vector2(545, 529)
+
+[node name="fruitff9" parent="Node" instance=ExtResource("10_6cv63")]
+position = Vector2(765, 527)
+
+[node name="fruitff10" parent="Node" instance=ExtResource("10_6cv63")]
+position = Vector2(1017, 288)
+
+[node name="HUD" parent="." instance=ExtResource("10_h627u")]
