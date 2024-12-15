@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://dj3eby3peqcgb"]
+[gd_scene load_steps=28 format=4 uid="uid://dj3eby3peqcgb"]
 
 [ext_resource type="Texture2D" uid="uid://b4soljtmer10m" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 8/1.png" id="1_6jjb0"]
 [ext_resource type="Texture2D" uid="uid://cs6gj8qcsyuwi" path="res://Assets/CelestialObjects/CelestialObjects.png" id="2_sb4nw"]
@@ -6,9 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://bpenc4d31owhh" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 8/3.png" id="4_ajwm5"]
 [ext_resource type="Texture2D" uid="uid://cwbkppxfn3swg" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 8/4.png" id="5_ohxyd"]
 [ext_resource type="PackedScene" uid="uid://cs813uwwlo2p5" path="res://Scenes/CharactersAndObjects/chomper.tscn" id="6_sxbse"]
+[ext_resource type="Script" path="res://Scripts/Players/chomperSolo.gd" id="7_bnrcr"]
 [ext_resource type="PackedScene" uid="uid://cwtbx5v734akk" path="res://Scenes/CharactersAndObjects/ship.tscn" id="7_lldk3"]
 [ext_resource type="PackedScene" uid="uid://dre5bx60gg3jg" path="res://Scenes/Projectiles/blast3.tscn" id="8_q8frp"]
-[ext_resource type="Script" path="res://Scripts/Ships/ship3.gd" id="8_s6ukw"]
+[ext_resource type="Script" path="res://Scripts/Ships/soloShip3.gd" id="9_03vma"]
 [ext_resource type="FontFile" uid="uid://q2k3wy0n646r" path="res://Assets/brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="9_gt1fe"]
 [ext_resource type="PackedScene" uid="uid://bxq64e4ewphpi" path="res://Scenes/CharactersAndObjects/fruit.tscn" id="11_4ltok"]
 [ext_resource type="Script" path="res://Scripts/Interface/healthSolo.gd" id="11_fwoxo"]
@@ -1255,10 +1256,11 @@ position = Vector2(207, 380)
 rotation = -2.62584
 
 [node name="Chomper" parent="Path2D/PathFollow2D" instance=ExtResource("6_sxbse")]
+script = ExtResource("7_bnrcr")
 
 [node name="Ship" parent="." node_paths=PackedStringArray("chomper", "timer") instance=ExtResource("7_lldk3")]
 position = Vector2(499, 367)
-script = ExtResource("8_s6ukw")
+script = ExtResource("9_03vma")
 chomper = NodePath("../Path2D/PathFollow2D/Chomper")
 timer = NodePath("Shooting")
 blast_scene = ExtResource("8_q8frp")
@@ -1276,7 +1278,7 @@ offset_top = 23.0
 offset_right = 1137.0
 offset_bottom = 47.0
 theme = SubResource("Theme_md0v6")
-text = "Lives: 3"
+text = "Lives: 4"
 script = ExtResource("11_fwoxo")
 
 [node name="Fruit3" type="Label" parent="."]

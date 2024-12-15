@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://bajtt2pw38m4l"]
+[gd_scene load_steps=30 format=4 uid="uid://bajtt2pw38m4l"]
 
 [ext_resource type="Texture2D" uid="uid://dbe3inqsrm8qt" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 6/1.png" id="1_63tex"]
 [ext_resource type="Texture2D" uid="uid://cs6gj8qcsyuwi" path="res://Assets/CelestialObjects/CelestialObjects.png" id="2_0ofgg"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bgukwfmksswdr" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 6/6.png" id="7_eug28"]
 [ext_resource type="PackedScene" uid="uid://cs813uwwlo2p5" path="res://Scenes/CharactersAndObjects/chomper.tscn" id="8_sgml5"]
 [ext_resource type="PackedScene" uid="uid://cwtbx5v734akk" path="res://Scenes/CharactersAndObjects/ship.tscn" id="9_ls3g1"]
+[ext_resource type="Script" path="res://Scripts/Players/chomperSolo.gd" id="9_rvc6q"]
 [ext_resource type="Script" path="res://Scripts/Ships/soloShip2.gd" id="10_b2noa"]
 [ext_resource type="PackedScene" uid="uid://ds70fl341vi2w" path="res://Scenes/Projectiles/blast2Solo.tscn" id="11_tvhmd"]
 [ext_resource type="FontFile" uid="uid://q2k3wy0n646r" path="res://Assets/brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="12_ch64u"]
@@ -1271,6 +1272,7 @@ position = Vector2(94, 282)
 rotation = -0.797683
 
 [node name="Chomper" parent="Path2D/PathFollow2D" instance=ExtResource("8_sgml5")]
+script = ExtResource("9_rvc6q")
 
 [node name="Ship" parent="." node_paths=PackedStringArray("chomper", "timer") instance=ExtResource("9_ls3g1")]
 position = Vector2(579, 332)

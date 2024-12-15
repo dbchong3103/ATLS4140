@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://cx1h2ha41gogq"]
+[gd_scene load_steps=23 format=4 uid="uid://cx1h2ha41gogq"]
 
 [ext_resource type="Script" path="res://Scripts/global.gd" id="1_wss3a"]
 [ext_resource type="Texture2D" uid="uid://cn5vw14i517hv" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 5/1.png" id="2_3645n"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cbvq0eclehx2l" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 5/5.png" id="6_o4f2t"]
 [ext_resource type="PackedScene" uid="uid://cs813uwwlo2p5" path="res://Scenes/CharactersAndObjects/chomper.tscn" id="7_twxr2"]
 [ext_resource type="FontFile" uid="uid://q2k3wy0n646r" path="res://Assets/brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="8_dl477"]
+[ext_resource type="Script" path="res://Scripts/Players/chomperSolo.gd" id="8_rlr21"]
 [ext_resource type="Script" path="res://Scripts/Interface/healthSolo.gd" id="9_ay0ag"]
 [ext_resource type="PackedScene" uid="uid://cwtbx5v734akk" path="res://Scenes/CharactersAndObjects/ship.tscn" id="10_ma0rd"]
 [ext_resource type="Script" path="res://Scripts/Ships/soloShip.gd" id="11_2ug18"]
@@ -665,6 +666,7 @@ position = Vector2(281, 91)
 rotation = -1.19029
 
 [node name="Chomper" parent="Path2D/PathFollow2D" instance=ExtResource("7_twxr2")]
+script = ExtResource("8_rlr21")
 
 [node name="Fruit" type="Label" parent="."]
 unique_name_in_owner = true
@@ -682,7 +684,7 @@ offset_top = 24.0
 offset_right = 1137.0
 offset_bottom = 48.0
 theme = SubResource("Theme_i2qss")
-text = "Lives: 3"
+text = "Lives: 2"
 script = ExtResource("9_ay0ag")
 
 [node name="Ship" parent="." node_paths=PackedStringArray("chomper", "timer") instance=ExtResource("10_ma0rd")]

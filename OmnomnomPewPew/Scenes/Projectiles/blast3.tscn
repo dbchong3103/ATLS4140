@@ -188,7 +188,7 @@ script = ExtResource("1_766ww")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(28.4486, -822.794)
 rotation = 0.0362682
-scale = Vector2(-0.874162, 2.17728)
+scale = Vector2(0.656233, 5.22358)
 shape = SubResource("RectangleShape2D_b0y3f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CollisionShape2D"]
@@ -216,9 +216,9 @@ autoplay = "new_animation_1"
 frame_progress = 0.107348
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
-position = Vector2(276.338, 1223.99)
+position = Vector2(137.613, 2690.33)
 rotation = 0.0362682
-scale = Vector2(-1.70416, 2.56076)
+scale = Vector2(-1.16203, 7.50946)
 shape = SubResource("RectangleShape2D_b0y3f")
 
 [node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="CollisionShape2D3"]
