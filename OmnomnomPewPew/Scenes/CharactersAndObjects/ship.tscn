@@ -1,0 +1,78 @@
+[gd_scene load_steps=13 format=3 uid="uid://cwtbx5v734akk"]
+
+[ext_resource type="Texture2D" uid="uid://bsd4b7k0u4xox" path="res://Assets/Foozle_2DS0011_Void_MainShip/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Bases/PNGs/Main Ship - Base - Full health.png" id="1_foqyl"]
+[ext_resource type="Script" path="res://Scripts/Ships/ship.gd" id="1_yag7f"]
+[ext_resource type="Script" path="res://Scripts/Projectiles/blast.gd" id="2_4y2re"]
+[ext_resource type="Texture2D" uid="uid://cicpqnjvq8rkt" path="res://Assets/Foozle_2DS0011_Void_MainShip/Foozle_2DS0011_Void_MainShip/Main ship weapons/PNGs/Main ship weapon - Projectile - Auto cannon bullet.png" id="3_7j2ca"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f15lw"]
+atlas = ExtResource("3_7j2ca")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jrafj"]
+atlas = ExtResource("3_7j2ca")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2gsv"]
+atlas = ExtResource("3_7j2ca")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qqd8"]
+atlas = ExtResource("3_7j2ca")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6oxph"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f15lw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jrafj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2gsv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qqd8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lxxel"]
+radius = 30.0
+height = 78.0
+
+[sub_resource type="PackedScene" id="PackedScene_fo8cn"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("blast", "script", "Area2D", "AnimatedSprite2D", "position", "scale", "sprite_frames", "autoplay", "frame_progress", "CollisionShape2D", "shape"),
+"node_count": 3,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 3, 3, -1, 5, 4, 1, 5, 2, 6, 3, 7, 4, 8, 5, 0, 0, 0, 9, 9, -1, 2, 4, 6, 10, 7, 0),
+"variants": [ExtResource("2_4y2re"), Vector2(3.8147e-06, -3.8147e-06), Vector2(6.84375, 6.84375), SubResource("SpriteFrames_6oxph"), "default", 0.903246, Vector2(1, -13), SubResource("CapsuleShape2D_lxxel")],
+"version": 3
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qruvb"]
+height = 48.1009
+
+[node name="Ship" type="CharacterBody2D"]
+position = Vector2(-4.76837e-07, 1.19209e-07)
+scale = Vector2(0.442439, 0.442439)
+script = ExtResource("1_yag7f")
+blast_scene = SubResource("PackedScene_fo8cn")
+
+[node name="MainShip-Base-FullHealth" type="Sprite2D" parent="."]
+position = Vector2(2.21594, -6.82487)
+rotation = 1.57598
+scale = Vector2(7.96185, 7.96185)
+texture = ExtResource("1_foqyl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.0442641, -2.30446)
+shape = SubResource("CapsuleShape2D_qruvb")

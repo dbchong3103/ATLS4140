@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://3tkbf8fosncc"]
+
+[ext_resource type="Script" path="res://Scripts/Buffs/ship_buff.gd" id="1_6kfuf"]
+[ext_resource type="Texture2D" uid="uid://dny47rttf2w2p" path="res://Assets/Foozle_2DS0011_Void_MainShip/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Engines/PNGs/Main Ship - Engines - Big Pulse Engine.png" id="1_nyrpo"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1gkhy"]
+radius = 8.0
+height = 20.0
+
+[node name="ShipBuff" type="Area2D"]
+scale = Vector2(1.84098, 1.84098)
+script = ExtResource("1_6kfuf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nyrpo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_1gkhy")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

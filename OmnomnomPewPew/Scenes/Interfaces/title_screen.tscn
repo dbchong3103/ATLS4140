@@ -1,0 +1,107 @@
+[gd_scene load_steps=9 format=3 uid="uid://6plbea81ap47"]
+
+[ext_resource type="Script" path="res://Scripts/Interface/title_screen.gd" id="1_sq5fi"]
+[ext_resource type="Texture2D" uid="uid://dwjlelsbyqqf6" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 2/3.png" id="2_16g6s"]
+[ext_resource type="Theme" uid="uid://b4xk3aj3qou72" path="res://Scenes/Interfaces/UIScreens.tres" id="2_jm3bd"]
+[ext_resource type="FontFile" uid="uid://q2k3wy0n646r" path="res://Assets/brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="3_0pmnn"]
+[ext_resource type="Texture2D" uid="uid://lhay5ajq4r4k" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 2/4.png" id="3_1bib4"]
+[ext_resource type="FontFile" uid="uid://1gaqxc6noqi3" path="res://Assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="4_g5xv7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iab47"]
+bg_color = Color(0.375406, 0.626439, 0.829307, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tyuf1"]
+font = ExtResource("3_0pmnn")
+font_size = 40
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(1212, 356)
+script = ExtResource("1_sq5fi")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 645.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iab47")
+
+[node name="1" type="Sprite2D" parent="PanelContainer"]
+position = Vector2(577, 342)
+scale = Vector2(2.00694, 2.09877)
+texture = ExtResource("2_16g6s")
+
+[node name="4" type="Sprite2D" parent="PanelContainer"]
+position = Vector2(577, 339.5)
+scale = Vector2(1.99306, 2.09568)
+texture = ExtResource("3_1bib4")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="Rows" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_jm3bd")
+theme_override_constants/separation = 60
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/Rows"]
+layout_mode = 2
+theme = ExtResource("2_jm3bd")
+text = "OMNOMNOM OR PEWPEW"
+label_settings = SubResource("LabelSettings_tyuf1")
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/Rows"]
+layout_mode = 2
+theme = ExtResource("2_jm3bd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 17
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "SINGLEPLAYER"
+
+[node name="Start" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+theme = ExtResource("2_jm3bd")
+text = "MULTIPLATYER"
+
+[node name="QuitGame" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+theme = ExtResource("2_jm3bd")
+text = "QUIT GAME"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_g5xv7")
+text = "Play alone or with a friend.
+If you are the chomper, hit space
+to move back and forth on the line
+if you are the captain, aim and
+shoot with your mouse!
+
+Have Fun!"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/QuitGame" to="." method="_on_quit_game_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/QuitGame" to="." method="_on_start_pressed"]

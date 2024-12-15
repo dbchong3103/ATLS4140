@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://db3wg2w6pa6vw"]
+
+[ext_resource type="Texture2D" uid="uid://bcbo0jpccnla2" path="res://Assets/Planets/Black_hole.png" id="1_o6ckr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pllnr"]
+radius = 50.0899
+
+[node name="Portal" type="Area2D"]
+
+[node name="BlackHole" type="Sprite2D" parent="."]
+position = Vector2(2, 6)
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("1_o6ckr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 9)
+shape = SubResource("CircleShape2D_pllnr")

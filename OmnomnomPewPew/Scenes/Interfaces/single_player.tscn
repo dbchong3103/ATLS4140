@@ -1,0 +1,106 @@
+[gd_scene load_steps=8 format=3 uid="uid://d1byab4fjc7kv"]
+
+[ext_resource type="Theme" uid="uid://b4xk3aj3qou72" path="res://Scenes/Interfaces/UIScreens.tres" id="1_jqyxe"]
+[ext_resource type="Script" path="res://Scripts/Interface/single_player.gd" id="1_tuqp0"]
+[ext_resource type="Texture2D" uid="uid://dwjlelsbyqqf6" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 2/3.png" id="2_28rhw"]
+[ext_resource type="FontFile" uid="uid://q2k3wy0n646r" path="res://Assets/brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="2_g0fau"]
+[ext_resource type="Texture2D" uid="uid://lhay5ajq4r4k" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 2/4.png" id="3_1jdig"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ofi4"]
+bg_color = Color(0.375406, 0.626439, 0.829307, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ncw51"]
+font = ExtResource("2_g0fau")
+font_size = 40
+
+[node name="SinglePlayer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tuqp0")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_right = 1152.0
+offset_bottom = 645.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0ofi4")
+
+[node name="1" type="Sprite2D" parent="PanelContainer"]
+position = Vector2(579, 342)
+scale = Vector2(2.00694, 2.09877)
+texture = ExtResource("2_28rhw")
+
+[node name="4" type="Sprite2D" parent="PanelContainer"]
+position = Vector2(579, 339.5)
+scale = Vector2(1.99306, 2.09568)
+texture = ExtResource("3_1jdig")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="Rows" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_jqyxe")
+theme_override_constants/separation = 75
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/Rows"]
+layout_mode = 2
+theme = ExtResource("1_jqyxe")
+text = "OMNOMNOM OR PEWPEW"
+label_settings = SubResource("LabelSettings_ncw51")
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/Rows"]
+layout_mode = 2
+theme = ExtResource("1_jqyxe")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label4" type="Label" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "SINGLE PLAYER MODE INSTRUCTIONS"
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Collect all the fruit to advance
+to  the next level!"
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "You'll start with only two lives
+but with each level, gain one."
+
+[node name="Label3" type="Label" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "However, if you lose all your 
+lives before advancing you will
+have to restart!"
+
+[node name="Label5" type="Label" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "WARNING: Really Hard. 
+I hate my own game."
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "CONTINUE"
+
+[node name="Button2" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "GO BACK"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]

@@ -1,0 +1,112 @@
+[gd_scene load_steps=8 format=3 uid="uid://kohfdgkaautx"]
+
+[ext_resource type="Script" path="res://Scripts/level_selection.gd" id="1_jsw42"]
+[ext_resource type="Theme" uid="uid://b4xk3aj3qou72" path="res://Scenes/Interfaces/UIScreens.tres" id="2_63bub"]
+[ext_resource type="FontFile" uid="uid://q2k3wy0n646r" path="res://Assets/brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="3_7gmix"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gjaq3"]
+bg_color = Color(0.375406, 0.626439, 0.829307, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5rqwt"]
+font = ExtResource("3_7gmix")
+font_size = 40
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7rddg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lys7b"]
+
+[node name="Level Selection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jsw42")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 645.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_gjaq3")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="Rows" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_63bub")
+theme_override_constants/separation = 75
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/Rows"]
+layout_mode = 2
+theme = ExtResource("2_63bub")
+text = "OMNOMNOM OR PEWPEW"
+label_settings = SubResource("LabelSettings_5rqwt")
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/Rows"]
+layout_mode = 2
+theme = ExtResource("2_63bub")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_63bub")
+theme_override_constants/shadow_offset_x = 0
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7rddg")
+text = "Multiplayer Versus"
+horizontal_alignment = 1
+
+[node name="2P1" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+theme = ExtResource("2_63bub")
+theme_override_constants/h_separation = 10
+theme_override_font_sizes/font_size = 15
+text = "MAP 1"
+
+[node name="2P2" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+theme = ExtResource("2_63bub")
+theme_override_font_sizes/font_size = 15
+text = "MAP 2"
+
+[node name="2P3" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+theme = ExtResource("2_63bub")
+theme_override_font_sizes/font_size = 15
+text = "MAP 2"
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lys7b")
+text = "Solo Play Time"
+horizontal_alignment = 1
+
+[node name="Start" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "START"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/2P1" to="." method="_on_p_1_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/2P2" to="." method="_on_p_2_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/2P3" to="." method="_on_p_3_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/2P3" to="." method="_on_p_2_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
