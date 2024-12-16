@@ -23,6 +23,7 @@ grow_vertical = 2
 script = ExtResource("1_tuqp0")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 645.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_0ofi4")
@@ -52,7 +53,7 @@ theme_override_constants/separation = 75
 [node name="Title" type="Label" parent="PanelContainer/MarginContainer/Rows"]
 layout_mode = 2
 theme = ExtResource("1_jqyxe")
-text = "OMNOMNOM OR PEWPEW"
+text = "OMNOMNOM PEWPEW"
 label_settings = SubResource("LabelSettings_ncw51")
 horizontal_alignment = 1
 

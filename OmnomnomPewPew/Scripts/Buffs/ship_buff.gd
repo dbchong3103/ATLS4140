@@ -9,10 +9,10 @@ var path_follow_offset = 0
 @export var cooldown: Timer
 
 var direction = 1
-
+ 
 func _physics_process(delta): 
-		var speed = Global.shipSpeed1
-		path_follow.progress += speed * delta * direction
+	var speed = Global.shipSpeed1
+	path_follow.progress += speed * delta * direction
 
 func _on_body_entered(body: Node2D) -> void:
 	timer.start()

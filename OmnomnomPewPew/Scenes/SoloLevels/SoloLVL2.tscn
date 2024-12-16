@@ -1388,5 +1388,5 @@ script = ExtResource("15_clbjf")
 position = Vector2(337, 484)
 script = ExtResource("15_clbjf")
 
-[connection signal="timeout" from="Ship/CaptainPew" to="Ship" method="_on_captain_pew_timeout"]
 [connection signal="timeout" from="Ship/CaptainPew" to="Ship" method="_on_shooting_timeout"]
+[connection signal="timeout" from="Ship/CaptainPew" to="Ship" method="_on_captain_pew_timeout"]

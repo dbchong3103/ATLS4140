@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://ds70fl341vi2w"]
 
-[ext_resource type="Script" path="res://Scripts/Projectiles/blast2.gd" id="1_60ix8"]
+[ext_resource type="Script" path="res://Scripts/Projectiles/blast.gd" id="1_pap1h"]
 [ext_resource type="Texture2D" uid="uid://cicpqnjvq8rkt" path="res://Assets/Foozle_2DS0011_Void_MainShip/Foozle_2DS0011_Void_MainShip/Main ship weapons/PNGs/Main ship weapon - Projectile - Auto cannon bullet.png" id="2_m7m0b"]
 [ext_resource type="Texture2D" uid="uid://bc7vpfydrx6xw" path="res://Assets/Foozle_2DS0011_Void_MainShip/Foozle_2DS0011_Void_MainShip/Main ship weapons/PNGs/Main ship weapon - Projectile - Big Space Gun.png" id="3_14ga1"]
 [ext_resource type="Texture2D" uid="uid://ciiccujd426yv" path="res://Assets/Foozle_2DS0011_Void_MainShip/Foozle_2DS0011_Void_MainShip/Main ship weapons/PNGs/Main ship weapon - Projectile - Rocket.png" id="4_61ocg"]
@@ -148,7 +148,7 @@ animations = [{
 [node name="blast" type="Area2D"]
 rotation = -3.12137
 scale = Vector2(-0.379618, -0.50933)
-script = ExtResource("1_60ix8")
+script = ExtResource("1_pap1h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(14.2378, 57.0582)

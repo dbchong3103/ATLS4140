@@ -10,7 +10,7 @@ func fire(forward: Vector2, speed: float):
 func _physics_process(delta):
 	position += velocity * delta
 
-func _on_body_entered(body: Player2) -> void: 
+func _on_body_entered(body: Player1) -> void: 
 	Global.captain_score += 100
 	queue_free()
 

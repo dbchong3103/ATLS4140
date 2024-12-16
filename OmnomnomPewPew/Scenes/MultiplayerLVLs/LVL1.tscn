@@ -763,16 +763,17 @@ unique_name_in_owner = true
 position = Vector2(234, 156)
 rotation = -0.626471
 
-[node name="ShipBuff" parent="BuffPath/ButtPathFollow" instance=ExtResource("6_e3ebu")]
+[node name="ShipBuff" parent="BuffPath/ButtPathFollow" node_paths=PackedStringArray("cooldown") instance=ExtResource("6_e3ebu")]
+cooldown = NodePath("../../../CaptainPew")
 
 [node name="BuffTime" type="Timer" parent="BuffPath/ButtPathFollow/ShipBuff"]
 wait_time = 3.0
 one_shot = true
 
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
+[connection signal="timeout" from="CaptainPew" to="Ship" method="_on_shooting_timeout"]
 [connection signal="timeout" from="CaptainPew" to="Ship" method="_on_captain_pew_timeout"]
 [connection signal="timeout" from="CaptainPew" to="Ship" method="_on_cooldown_timeout"]
-[connection signal="timeout" from="CaptainPew" to="Ship" method="_on_shooting_timeout"]
 [connection signal="timeout" from="ScoreCount" to="ChompScore" method="_on_score_count_timeout"]
 [connection signal="timeout" from="BuffTimer" to="powerFruit" method="_on_fruit_buff_timeout"]
 [connection signal="timeout" from="BuffTimer" to="powerFruit" method="_on_buff_timer_timeout"]

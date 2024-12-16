@@ -9,8 +9,8 @@ var path_follow_offset = 0
 var direction = 1
 
 func _physics_process(delta): 
-	var speed2 = Global.chomper_speed2
-	path_follow.progress += speed2 * delta * direction
+	var speed1 = Global.chomper_speed1
+	path_follow.progress += speed1 * delta * direction
 	
 	# Check for the spacebar press to change direction
 	if Input.is_action_just_pressed("ui_accept"):

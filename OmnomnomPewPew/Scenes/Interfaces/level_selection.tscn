@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://kohfdgkaautx"]
+[gd_scene load_steps=8 format=3 uid="uid://kohfdgkaautx"]
 
 [ext_resource type="Script" path="res://Scripts/Interface/level_selection.gd" id="1_jsw42"]
 [ext_resource type="Theme" uid="uid://b4xk3aj3qou72" path="res://Scenes/Interfaces/UIScreens.tres" id="2_63bub"]
@@ -12,8 +12,6 @@ bg_color = Color(0.375406, 0.626439, 0.829307, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_5rqwt"]
 font = ExtResource("3_7gmix")
 font_size = 40
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7rddg"]
 
 [node name="Level Selection" type="Control"]
 layout_mode = 3
@@ -55,7 +53,7 @@ theme_override_constants/separation = 75
 [node name="Title" type="Label" parent="PanelContainer/MarginContainer/Rows"]
 layout_mode = 2
 theme = ExtResource("2_63bub")
-text = "OMNOMNOM OR PEWPEW"
+text = "OMNOMNOM PEWPEW"
 label_settings = SubResource("LabelSettings_5rqwt")
 horizontal_alignment = 1
 
@@ -70,11 +68,11 @@ theme_override_constants/separation = 20
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_63bub")
-theme_override_constants/shadow_offset_x = 0
-theme_override_font_sizes/font_size = 15
-theme_override_styles/normal = SubResource("StyleBoxEmpty_7rddg")
 text = "Multiplayer Versus"
 horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
 
 [node name="2P1" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
 layout_mode = 2

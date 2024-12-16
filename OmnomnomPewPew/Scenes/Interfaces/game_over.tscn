@@ -42,7 +42,7 @@ theme_override_constants/separation = 100
 [node name="Title" type="Label" parent="PanelContainer/MarginContainer/Rows"]
 layout_mode = 2
 theme = ExtResource("1_ebwq1")
-text = "OMNOMNOM OR PEWPEW"
+text = "OMNOMNOM PEWPEW"
 label_settings = SubResource("LabelSettings_qbluu")
 horizontal_alignment = 1
 

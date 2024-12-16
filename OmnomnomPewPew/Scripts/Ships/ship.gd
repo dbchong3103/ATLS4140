@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var chomper: CharacterBody2D
 @export var timer: Timer
 @export var blast_scene = Resource
-@export var firedelay: float = 0.25
+@export var firedelay: float = .5
 
 var can_attack = true
 
