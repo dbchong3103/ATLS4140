@@ -1,7 +1,16 @@
 extends CharacterBody2D
 
 @export var fireball: Resource
+@export var qSkill: Resource
+@export var eSkill: Resource
+
 @export var move_speed: float = 200.0
+
+@export var qSkill_timer: Timer
+@export var eSkill_timer: Timer
+
+@export var game_timer: Timer
+
 
 func _input(event):
 	if (event is InputEventMouseButton):
@@ -13,7 +22,13 @@ func _input(event):
 			var projectile_forward = position.direction_to(get_global_mouse_position())
 			new_fireball.fire(projectile_forward, 750.0)
 			new_fireball.position = position
-
+	#if (event is InputEventKey):
+		#if (event.is_pressed() and event.keycode == KEY_Q):
+			#var new_q = qSkill.instantiate()
+			#get_parent().add_child(new_q)
+		#
+		#var q_forward = 
+		
 func _physics_process(delta):
 	# Aiming logic
 	#$Weapon.rotation = position.direction_to(get_global_mouse_position()).angle()

@@ -1,9 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://cr56mwfqnp8wj"]
+[gd_scene load_steps=18 format=3 uid="uid://cr56mwfqnp8wj"]
 
 [ext_resource type="Texture2D" uid="uid://bcfcrpi7xm7io" path="res://Assets/Environment/Dungeon Prison/Assets/Tiles.png" id="1_avwyr"]
 [ext_resource type="Texture2D" uid="uid://c0fervpct8rc4" path="res://Assets/Environment/Dungeon Prison/Assets/Props.png" id="2_ypo4l"]
 [ext_resource type="Texture2D" uid="uid://uvhv5rlsvd3y" path="res://Assets/Environment/treasure chests.png" id="3_cjbj6"]
-[ext_resource type="PackedScene" uid="uid://cswnmrcxtqt1m" path="res://Scenes/spawner.tscn" id="4_86htv"]
 [ext_resource type="PackedScene" uid="uid://ce156f0iaduji" path="res://Scenes/shooter.tscn" id="4_ioope"]
 [ext_resource type="PackedScene" uid="uid://bb1b6vo07kjeh" path="res://Scenes/pumpkin.tscn" id="5_nxryc"]
 [ext_resource type="PackedScene" uid="uid://c7p38m5021yln" path="res://Scenes/fireball.tscn" id="6_o2rbl"]
@@ -1684,20 +1683,40 @@ tile_set = SubResource("TileSet_cslt8")
 format = 2
 layer_0/tile_data = PackedInt32Array(66, 327680, 10, 67, 393216, 10, 46, 327680, 10, 47, 393216, 10, 25, 327680, 10, 26, 393216, 10, 5, 327680, 10, 6, 393216, 10, 65602, 327680, 13, 65603, 393216, 13, 65582, 327680, 13, 65583, 393216, 13, 65561, 327680, 13, 65562, 393216, 13, 65541, 327680, 13, 65542, 393216, 13, 2359363, 655360, 0, 2424899, 655360, 1, 2490435, 655360, 2, 2555971, 655360, 3, 2359364, 720896, 0, 2424900, 720896, 1, 2490436, 720896, 2, 2555972, 720896, 3, 2359365, 786432, 0, 2424901, 786432, 1, 2490437, 786432, 2, 2555973, 786432, 3, 2359366, 851968, 0, 2424902, 851968, 1, 2490438, 851968, 2, 2555974, 851968, 3, 1769525, 655360, 0, 1835061, 655360, 1, 1900597, 655360, 2, 1966133, 655360, 3, 1769526, 720896, 0, 1835062, 720896, 1, 1900598, 720896, 2, 1966134, 720896, 3, 1769527, 786432, 0, 1835063, 786432, 1, 1900599, 786432, 2, 1966135, 786432, 3, 1769528, 851968, 0, 1835064, 851968, 1, 1900600, 851968, 2, 1966136, 851968, 3, 1179673, 655360, 0, 1245209, 655360, 1, 1310745, 655360, 2, 1376281, 655360, 3, 1179674, 720896, 0, 1245210, 720896, 1, 1310746, 720896, 2, 1376282, 720896, 3, 1179675, 786432, 0, 1245211, 786432, 1, 1310747, 786432, 2, 1376283, 786432, 3, 1179676, 851968, 0, 1245212, 851968, 1, 1310748, 851968, 2, 1376284, 851968, 3, 1376256, 655360, 0, 1441792, 655360, 1, 1507328, 655360, 2, 1572864, 655360, 3, 1376257, 720896, 0, 1441793, 720896, 1, 1507329, 720896, 2, 1572865, 720896, 3, 1376258, 786432, 0, 1441794, 786432, 1, 1507330, 786432, 2, 1572866, 786432, 3, 1376259, 851968, 0, 1441795, 851968, 1, 1507331, 851968, 2, 1572867, 851968, 3, 720909, 655360, 0, 786445, 655360, 1, 851981, 655360, 2, 917517, 655360, 3, 720910, 720896, 0, 786446, 720896, 1, 851982, 720896, 2, 917518, 720896, 3, 720911, 786432, 0, 786447, 786432, 1, 851983, 786432, 2, 917519, 786432, 3, 720912, 851968, 0, 786448, 851968, 1, 851984, 851968, 2, 917520, 851968, 3, 2359296, 655360, 4, 2424832, 655360, 5, 2490368, 655360, 6, 2162688, 655360, 4, 2228224, 655360, 5, 2293760, 655360, 6, 15, 1, 12, 65551, 1, 13, 11, 1, 12, 65547, 1, 13, 34, 65537, 12, 65570, 65537, 13, 38, 65537, 12, 65574, 65537, 13, 55, 131073, 12, 65591, 131073, 13, 59, 131073, 12, 65595, 131073, 13)
 
-[node name="Spawner" parent="." instance=ExtResource("4_86htv")]
-visible = false
-position = Vector2(-15, 80)
-
-[node name="Shooter" parent="." instance=ExtResource("4_ioope")]
+[node name="Shooter" parent="." node_paths=PackedStringArray("game_timer") instance=ExtResource("4_ioope")]
 position = Vector2(581, 306)
 fireball = ExtResource("6_o2rbl")
+game_timer = NodePath("../Timers/GameTimer")
 
 [node name="Pumpkin" parent="." node_paths=PackedStringArray("timer", "player") instance=ExtResource("5_nxryc")]
-timer = NodePath("pew")
+timer = NodePath("../Timers/SliceTimer")
 slice = ExtResource("7_t5ysi")
 player = NodePath("../Shooter")
 
-[node name="pew" type="Timer" parent="Pumpkin"]
-autostart = true
+[node name="Spawner" type="Node2D" parent="."]
 
-[connection signal="timeout" from="Pumpkin/pew" to="Pumpkin" method="_on_pew_timeout"]
+[node name="Marker2D" type="Marker2D" parent="Spawner"]
+position = Vector2(217, 51)
+
+[node name="Marker2D2" type="Marker2D" parent="Spawner"]
+position = Vector2(583, 52)
+
+[node name="Marker2D3" type="Marker2D" parent="Spawner"]
+position = Vector2(917, 54)
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="GameTimer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+
+[node name="qSkill" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+
+[node name="eSkill" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+
+[node name="SliceTimer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+
+[node name="SpawnTimer" type="Timer" parent="Timers"]
+unique_name_in_owner = true

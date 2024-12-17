@@ -1,0 +1,118 @@
+[gd_scene load_steps=9 format=3 uid="uid://b8mfducw84xwf"]
+
+[ext_resource type="Script" path="res://Scripts/orc.gd" id="1_rq4bm"]
+[ext_resource type="Texture2D" uid="uid://cbfbw8sx15ryj" path="res://Assets/Enemies/Orc.png" id="2_7pshn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_no8uh"]
+size = Vector2(13, 15)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7axw0"]
+radius = 4.0
+height = 20.0
+
+[sub_resource type="Animation" id="Animation_6fk71"]
+resource_name = "orc_attack"
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Orc:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [17, 18, 19, 20, 21]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Axe/AxeCollision:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_wyt3p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Orc:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [17]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Axe/AxeCollision:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ua2wy"]
+resource_name = "orc_run"
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Orc:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11, 12, 13, 14, 15]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vjht0"]
+_data = {
+"RESET": SubResource("Animation_wyt3p"),
+"orc_attack": SubResource("Animation_6fk71"),
+"orc_run": SubResource("Animation_ua2wy")
+}
+
+[node name="Orc" type="CharacterBody2D"]
+script = ExtResource("1_rq4bm")
+
+[node name="OrcBody" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_no8uh")
+
+[node name="Orc" type="Sprite2D" parent="."]
+position = Vector2(-1, -2)
+texture = ExtResource("2_7pshn")
+hframes = 8
+vframes = 6
+frame = 17
+
+[node name="Axe" type="Area2D" parent="."]
+
+[node name="AxeCollision" type="CollisionShape2D" parent="Axe"]
+position = Vector2(18, 0)
+shape = SubResource("CapsuleShape2D_7axw0")
+disabled = true
+
+[node name="OrcAnimation" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_vjht0")
+}
