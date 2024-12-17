@@ -1,0 +1,80 @@
+[gd_scene load_steps=10 format=3 uid="uid://bb1b6vo07kjeh"]
+
+[ext_resource type="Texture2D" uid="uid://dpnpt1554lma7" path="res://Assets/Enemies/pumpkin.png" id="1_5gwmb"]
+[ext_resource type="Script" path="res://Scripts/pumpkin.gd" id="1_nfme8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dlfe5"]
+size = Vector2(20, 39)
+
+[sub_resource type="Animation" id="Animation_sca1o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_d3hwk"]
+resource_name = "forward"
+length = 1.00003
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_8sb8d"]
+resource_name = "left"
+step = 0.125
+
+[sub_resource type="Animation" id="Animation_pcgwo"]
+resource_name = "right"
+step = 0.125
+
+[sub_resource type="Animation" id="Animation_h6t04"]
+resource_name = "up"
+step = 0.125
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n1uau"]
+_data = {
+"RESET": SubResource("Animation_sca1o"),
+"forward": SubResource("Animation_d3hwk"),
+"left": SubResource("Animation_8sb8d"),
+"right": SubResource("Animation_pcgwo"),
+"up": SubResource("Animation_h6t04")
+}
+
+[node name="Pumpkin" type="CharacterBody2D"]
+scale = Vector2(0.76, 0.76)
+script = ExtResource("1_nfme8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_dlfe5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5gwmb")
+hframes = 4
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_n1uau")
+}
+autoplay = "forward"
