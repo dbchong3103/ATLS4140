@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgmfxuu0vsksw"]
+
+[ext_resource type="Theme" uid="uid://cyo7vfdybcdc5" path="res://Scenes/interface.tres" id="1_bdx1t"]
+[ext_resource type="Script" path="res://Scripts/title_screen.gd" id="1_j8g74"]
+
+[node name="TitleScreen" type="Control" node_paths=PackedStringArray("score")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j8g74")
+score = NodePath("PanelContainer/MarginContainer/CenterContainer/VBoxContainer2/VBoxContainer/Score")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 1154.0
+offset_bottom = 649.0
+theme = ExtResource("1_bdx1t")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/CenterContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_bdx1t")
+text = "WELCOME"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/CenterContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_constants/separation = 15
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/CenterContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_bdx1t")
+text = "START"
+
+[node name="Button2" type="Button" parent="PanelContainer/MarginContainer/CenterContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "QUIT
+"
+
+[node name="Score" type="Label" parent="PanelContainer/MarginContainer/CenterContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "High Score:"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/CenterContainer/VBoxContainer2/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/CenterContainer/VBoxContainer2/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]

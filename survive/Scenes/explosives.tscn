@@ -1,3 +1,123 @@
-[gd_scene format=3 uid="uid://bedo4qy2h1qcy"]
+[gd_scene load_steps=7 format=3 uid="uid://bedo4qy2h1qcy"]
 
-[node name="Explosives" type="Area2D"]
+[ext_resource type="Script" path="res://Scripts/explosives.gd" id="1_67sg0"]
+[ext_resource type="Texture2D" uid="uid://cokt52c6j6ya4" path="res://Assets/32x32 RPG Effect/Part 1/47.png" id="1_icoc5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sfj5j"]
+radius = 5.0
+height = 18.0
+
+[sub_resource type="Animation" id="Animation_lhoph"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("47:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [45]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2xcb4"]
+resource_name = "explode"
+length = 1.00001
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("47:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.625, 0.658333, 0.691667, 0.725, 0.758333, 0.791667, 0.825, 0.858333, 0.891667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [45, 45, 46, 47, 48, 49, 50, 51, 52, 53]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.625, 0.875),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.82867, 1.58307)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p5400"]
+_data = {
+"RESET": SubResource("Animation_lhoph"),
+"explode": SubResource("Animation_2xcb4")
+}
+
+[node name="Explosives" type="Area2D" node_paths=PackedStringArray("timer")]
+scale = Vector2(2.72, 2.72)
+script = ExtResource("1_67sg0")
+timer = NodePath("Timer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_sfj5j")
+disabled = true
+
+[node name="47" type="Sprite2D" parent="."]
+position = Vector2(1, 0)
+texture = ExtResource("1_icoc5")
+hframes = 9
+vframes = 10
+frame = 45
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_p5400")
+}
+autoplay = "explode"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

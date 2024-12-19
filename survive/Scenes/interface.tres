@@ -1,0 +1,22 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cyo7vfdybcdc5"]
+
+[ext_resource type="FontFile" uid="uid://17l72gwqqgik" path="res://Assets/monogram/ttf/PixelOperator8.ttf" id="1_pjgsp"]
+[ext_resource type="FontFile" uid="uid://cfpesavismh1s" path="res://Assets/monogram/ttf/ThaleahFat.ttf" id="2_i4fqj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_en6co"]
+bg_color = Color(0.216953, 0.0853141, 0.232605, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ejgch"]
+bg_color = Color(0.116368, 0.03089, 0.134434, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_klifx"]
+bg_color = Color(0.162045, 0.289228, 0.349911, 1)
+
+[resource]
+Button/font_sizes/font_size = 20
+Button/fonts/font = ExtResource("1_pjgsp")
+Button/styles/hover_pressed = SubResource("StyleBoxFlat_en6co")
+Button/styles/pressed = SubResource("StyleBoxFlat_ejgch")
+Label/font_sizes/font_size = 70
+Label/fonts/font = ExtResource("2_i4fqj")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_klifx")

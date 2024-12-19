@@ -1,0 +1,84 @@
+[gd_scene load_steps=7 format=3 uid="uid://cn4h5oig1a38i"]
+
+[ext_resource type="Texture2D" uid="uid://df7kvasy517pd" path="res://Assets/Enemies/BOSS.png" id="1_4lkuj"]
+
+[sub_resource type="Animation" id="Animation_p5lkg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Boss:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_d2lcq"]
+resource_name = "boss_attack"
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Boss:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11, 12, 13]
+}
+
+[sub_resource type="Animation" id="Animation_4vpc3"]
+resource_name = "boss_idle"
+length = 0.750013
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Boss:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sndkh"]
+_data = {
+"RESET": SubResource("Animation_p5lkg"),
+"boss_attack": SubResource("Animation_d2lcq"),
+"boss_idle": SubResource("Animation_4vpc3")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4pxnl"]
+radius = 17.0294
+
+[node name="Boss" type="CharacterBody2D"]
+scale = Vector2(3.76, 3.76)
+
+[node name="Boss" type="Sprite2D" parent="."]
+position = Vector2(-8, 0)
+texture = ExtResource("1_4lkuj")
+hframes = 8
+vframes = 4
+
+[node name="BossAnimation" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_sndkh")
+}
+autoplay = "boss_idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 2)
+scale = Vector2(1.08, 1.08)
+shape = SubResource("CircleShape2D_4pxnl")

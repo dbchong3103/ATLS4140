@@ -1,0 +1,57 @@
+[gd_scene load_steps=11 format=3 uid="uid://cap2dar3o86lu"]
+
+[ext_resource type="Texture2D" uid="uid://yflytj4v6oui" path="res://Assets/32x32 RPG Effect/22.png" id="1_5m457"]
+[ext_resource type="Texture2D" uid="uid://de8mtno1kyrb3" path="res://Assets/32x32 RPG Effect/23.png" id="2_qok7b"]
+[ext_resource type="Texture2D" uid="uid://dqnd0st7xje3y" path="res://Assets/32x32 RPG Effect/24.png" id="3_5htxh"]
+[ext_resource type="Texture2D" uid="uid://dbn4a20rkva74" path="res://Assets/32x32 RPG Effect/25.png" id="4_8mrpa"]
+[ext_resource type="Texture2D" uid="uid://by8wtfud07o0c" path="res://Assets/32x32 RPG Effect/26.png" id="5_s1faa"]
+[ext_resource type="Texture2D" uid="uid://lxihkto1c8eg" path="res://Assets/32x32 RPG Effect/27.png" id="6_en0ih"]
+[ext_resource type="Texture2D" uid="uid://cig5q20dfs8ob" path="res://Assets/32x32 RPG Effect/28.png" id="7_4y8n7"]
+[ext_resource type="Texture2D" uid="uid://btmqsg5cyqpjf" path="res://Assets/32x32 RPG Effect/29.png" id="8_kem38"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xcgi5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5m457")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qok7b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5htxh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8mrpa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_s1faa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_en0ih")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4y8n7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_kem38")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_knh1m"]
+radius = 80.0
+height = 182.4
+
+[node name="laser" type="Area2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xcgi5")
+frame = 2
+frame_progress = 0.772455
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(-1, 0.131579)
+shape = SubResource("CapsuleShape2D_knh1m")

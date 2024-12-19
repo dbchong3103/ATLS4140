@@ -3,13 +3,18 @@ extends Node
 var score = 0
 var health = 100
 
-var char_speed = 500
-var enemy_speed = 300
+var charSpeed = 500
+var orcSpeed = 3
+var karenSpeed = 4
 
 var orcHealth = 500
 var bossHealth = 1000
-var slimeHealth = 200
+var karenHealth = 350
 
-var orcDamage = 10
+var orcDamage = 15
 var bossDamage = 25
-var slimeDamage = 5
+var karenDamage = 20
+
+var explosionDmg = 100
+var fireDmg = 50
+var zoneDmg = 200

@@ -10,9 +10,8 @@ func fire(forward: Vector2, speed: float):
 func _physics_process(delta):
 	position += velocity * delta
 
-#func _on_time_to_live_timeout():
-	#queue_free()
-
-func _on_body_entered(body: Node2D) -> void:
-	#(body as Enemy).hit(1)
+func _on_body_entered(body: Player) -> void: 
+	Global.health -= 50
+	if Global.health <= 0:
+		get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
 	queue_free()

@@ -1,6 +1,5 @@
 [gd_scene load_steps=18 format=3 uid="uid://ce156f0iaduji"]
 
-[ext_resource type="Script" path="res://Scripts/shooter.gd" id="1_avfae"]
 [ext_resource type="Texture2D" uid="uid://j1g7xfg5e48c" path="res://Assets/The Female Adventurer - Free/Shadow.png" id="1_utgwo"]
 [ext_resource type="Texture2D" uid="uid://cg7p4jrvekff2" path="res://Assets/The Female Adventurer - Free/Walk/walk.png" id="2_nvd4m"]
 [ext_resource type="Texture2D" uid="uid://dyexy1osuu7jf" path="res://Assets/The Female Adventurer - Free/Idle/Idle.png" id="5_4f1rr"]
@@ -180,16 +179,22 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
+[sub_resource type="Animation" id="Animation_fjdlq"]
+resource_name = "laser"
+length = 3.00001
+step = 0.125
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ojqtq"]
 _data = {
 "RESET": SubResource("Animation_5ox5k"),
-"idle_front": SubResource("Animation_2444h")
+"idle_front": SubResource("Animation_2444h"),
+"laser": SubResource("Animation_fjdlq")
 }
 
 [node name="Shooter" type="CharacterBody2D"]
-script = ExtResource("1_avfae")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="PlayerBody" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_2y3vk")
 
@@ -198,7 +203,6 @@ position = Vector2(0, 3)
 texture = ExtResource("1_utgwo")
 
 [node name="Player" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(0, 2)
 texture = ExtResource("2_nvd4m")
 hframes = 8

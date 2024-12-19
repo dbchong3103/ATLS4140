@@ -760,5 +760,5 @@ script = ExtResource("13_1p6q5")
 unique_name_in_owner = true
 autostart = true
 
-[connection signal="timeout" from="cooldown" to="Ship" method="_on_cooldown_timeout"]
 [connection signal="timeout" from="cooldown" to="Ship" method="_on_shooting_timeout"]
+[connection signal="timeout" from="cooldown" to="Ship" method="_on_cooldown_timeout"]
