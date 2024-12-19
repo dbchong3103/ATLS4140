@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bedo4qy2h1qcy"]
+[gd_scene load_steps=8 format=3 uid="uid://bedo4qy2h1qcy"]
 
 [ext_resource type="Script" path="res://Scripts/explosives.gd" id="1_67sg0"]
-[ext_resource type="Texture2D" uid="uid://cokt52c6j6ya4" path="res://Assets/32x32 RPG Effect/Part 1/47.png" id="1_icoc5"]
+[ext_resource type="Texture2D" uid="uid://cokt52c6j6ya4" path="res://Assets/fireballs/Part 1/47.png" id="1_icoc5"]
+[ext_resource type="AudioStream" uid="uid://d1w60y661s6v6" path="res://Assets/Sounds/RPG_Essentials_Free/8_Atk_Magic_SFX/04_Fire_explosion_04_medium.wav" id="3_u8slt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sfj5j"]
 radius = 5.0
@@ -119,5 +120,9 @@ autoplay = "explode"
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_u8slt")
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

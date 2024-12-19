@@ -1,8 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://ce156f0iaduji"]
+[gd_scene load_steps=20 format=3 uid="uid://ce156f0iaduji"]
 
+[ext_resource type="Script" path="res://Scripts/shooter.gd" id="1_48fpl"]
 [ext_resource type="Texture2D" uid="uid://j1g7xfg5e48c" path="res://Assets/The Female Adventurer - Free/Shadow.png" id="1_utgwo"]
 [ext_resource type="Texture2D" uid="uid://cg7p4jrvekff2" path="res://Assets/The Female Adventurer - Free/Walk/walk.png" id="2_nvd4m"]
 [ext_resource type="Texture2D" uid="uid://dyexy1osuu7jf" path="res://Assets/The Female Adventurer - Free/Idle/Idle.png" id="5_4f1rr"]
+[ext_resource type="AudioStream" uid="uid://yxipy6lpik6e" path="res://Assets/Sounds/RPG_Essentials_Free/12_Player_Movement_SFX/08_Step_rock_02.wav" id="5_ayq2r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2y3vk"]
 size = Vector2(12, 19)
@@ -192,6 +194,7 @@ _data = {
 }
 
 [node name="Shooter" type="CharacterBody2D"]
+script = ExtResource("1_48fpl")
 
 [node name="PlayerBody" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
@@ -227,3 +230,8 @@ libraries = {
 "": SubResource("AnimationLibrary_ojqtq")
 }
 autoplay = "idle_front"
+
+[node name="walking" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ayq2r")
+autoplay = true
+bus = &"SFX"

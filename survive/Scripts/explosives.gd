@@ -16,11 +16,14 @@ func _physics_process(delta):
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Karen:
-		Global.karenHealth -= Global.explosionDmg
+		if body.has_method("take_boom_damage") == true:
+			body.take_boom_damage()
 	if body is Orc:
-		Global.orcHealth -= Global.explosionDmg
+		if body.has_method("take_boom_damage") == true:
+			body.take_boom_damage()
 	if body is Boss:
-		Global.bossHealth -= Global.explosionDmg
+		if body.has_method("take_boom_damage") == true:
+			body.take_boom_damage()
 		print(Global.bossHealth)
 	queue_free()
 

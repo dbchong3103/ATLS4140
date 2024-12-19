@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://c7p38m5021yln"]
+[gd_scene load_steps=9 format=3 uid="uid://c7p38m5021yln"]
 
-[ext_resource type="Texture2D" uid="uid://4n3pxytx3ya3" path="res://Assets/32x32 RPG Effect/Part 1/01.png" id="1_e3jre"]
+[ext_resource type="Texture2D" uid="uid://4n3pxytx3ya3" path="res://Assets/fireballs/Part 1/01.png" id="1_e3jre"]
 [ext_resource type="Script" path="res://Scripts/fireball.gd" id="1_tu3md"]
+[ext_resource type="AudioStream" uid="uid://j10afgob5u2s" path="res://Assets/Sounds/RPG_Essentials_Free/10_Battle_SFX/03_Claw_03.wav" id="3_xtjkq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b5pij"]
 radius = 3.0
@@ -77,5 +78,9 @@ frame = 7
 libraries = {
 "": SubResource("AnimationLibrary_rglsh")
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_xtjkq")
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

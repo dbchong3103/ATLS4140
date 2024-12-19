@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b8mfducw84xwf"]
+[gd_scene load_steps=10 format=3 uid="uid://b8mfducw84xwf"]
 
 [ext_resource type="Script" path="res://Scripts/orc.gd" id="1_rq4bm"]
 [ext_resource type="Texture2D" uid="uid://cbfbw8sx15ryj" path="res://Assets/Enemies/Orc.png" id="2_7pshn"]
+[ext_resource type="AudioStream" uid="uid://bayvoekqlh2ca" path="res://Assets/Sounds/sfx/20_orc_special_atk.wav" id="3_2jrwb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_no8uh"]
 size = Vector2(18.6169, 20.1263)
@@ -119,4 +120,11 @@ libraries = {
 }
 autoplay = "orc_run"
 
+[node name="Spawner" type="Timer" parent="."]
+wait_time = 15.0
+
+[node name="OrcAttack" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_2jrwb")
+
 [connection signal="body_entered" from="Axe" to="." method="_on_axe_body_entered"]
+[connection signal="timeout" from="Spawner" to="." method="_on_spawner_timeout"]

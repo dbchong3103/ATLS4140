@@ -1,6 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cn4h5oig1a38i"]
+[gd_scene load_steps=10 format=3 uid="uid://cn4h5oig1a38i"]
 
 [ext_resource type="Texture2D" uid="uid://df7kvasy517pd" path="res://Assets/Enemies/BOSS.png" id="1_4lkuj"]
+[ext_resource type="Script" path="res://Scripts/boss.gd" id="1_awe1h"]
+[ext_resource type="PackedScene" uid="uid://b8afsm0le5rqy" path="res://Scenes/boss_pew.tscn" id="2_we6eq"]
+[ext_resource type="AudioStream" uid="uid://278v6k3pxi0n" path="res://Assets/Sounds/RPG_Essentials_Free/8_Atk_Magic_SFX/45_Charge_05.wav" id="4_4l2wk"]
 
 [sub_resource type="Animation" id="Animation_p5lkg"]
 length = 0.001
@@ -62,8 +65,12 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_4pxnl"]
 radius = 17.0294
 
-[node name="Boss" type="CharacterBody2D"]
+[node name="Boss" type="CharacterBody2D" node_paths=PackedStringArray("timer", "healthUp")]
 scale = Vector2(3.76, 3.76)
+script = ExtResource("1_awe1h")
+pew = ExtResource("2_we6eq")
+timer = NodePath("pewpew")
+healthUp = NodePath("health")
 
 [node name="Boss" type="Sprite2D" parent="."]
 position = Vector2(-8, 0)
@@ -78,7 +85,23 @@ libraries = {
 }
 autoplay = "boss_idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="BossBody" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(-2, 2)
 scale = Vector2(1.08, 1.08)
 shape = SubResource("CircleShape2D_4pxnl")
+
+[node name="pewpew" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="health" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="pewpewpew" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_4l2wk")
+bus = &"SFX"
+
+[connection signal="timeout" from="pewpew" to="." method="_on_pewpew_timeout"]
+[connection signal="timeout" from="health" to="." method="_on_health_timeout"]

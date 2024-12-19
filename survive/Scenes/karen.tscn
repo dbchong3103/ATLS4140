@@ -82,19 +82,24 @@ libraries = {
 }
 autoplay = "forward"
 
-[node name="Line2D" type="Line2D" parent="Sprite2D"]
-scale = Vector2(0.961203, 1.84746)
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Sprite2D/Area2D"]
 position = Vector2(0, 0.5)
 shape = SubResource("CircleShape2D_jlgdr")
 
-[node name="Line2D" type="Line2D" parent="Area2D"]
+[node name="Line2D" type="Line2D" parent="Sprite2D/Area2D"]
 points = PackedVector2Array(0, -30.2632, 17.1053, -26.3158, 26.3158, -14.4737, 31.5789, 1.31579, 27.6316, 15.7895, 17.1053, 26.3158, 2.63158, 31.5789, -15.7895, 27.6316, -26.3158, 17.1053, -31.5789, 1.31579, -26.3158, -15.7895, -15.7895, -26.3158)
 closed = true
 width = 1.0
 default_color = Color(0.883296, 0.000666322, 0.890785, 1)
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[node name="Line2D" type="Line2D" parent="Sprite2D"]
+scale = Vector2(0.961203, 1.84746)
+
+[node name="Spawner" type="Timer" parent="."]
+wait_time = 15.0
+autostart = true
+
+[connection signal="body_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Spawner" to="." method="_on_spawner_timeout"]

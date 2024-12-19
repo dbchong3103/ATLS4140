@@ -1,39 +1,50 @@
 extends Node2D
 
+@onready var main = get_node("/root/main")
+
 @onready var game_timer: Timer = %GameTimer
 @export var orc: Resource
 @export var karen: Resource
 @export var boss: Resource
 @export var waves: Timer
+@export var bossSpawn: Timer
 
+var spawn_points := []
+		
+
+func spawn_orc():
+	var newOrc = preload("res://Scenes/orc.tscn").instantiate()
+	%PathFollow2D.progress_ratio = randf()
+	newOrc.global_position = %PathFollow2D.global_position
+	add_child(newOrc)
+
+func spawn_karen():
+	var newKaren = preload("res://Scenes/karen.tscn").instantiate()
+	%PathFollow2D.progress_ratio = randf()
+	newKaren.global_position = %PathFollow2D.global_position
+	add_child(newKaren)
+
+func spawn_boss():
+	var newBoss = preload("res://Scenes/boss.tscn").instantiate()
+	newBoss.global_position = $Marker2D.global_position
+	add_child(newBoss)
+	
 func _ready() -> void:
 	game_timer.start()
 	print(game_timer.time_left)
-
-func spawner():
-	var spawn1 = %SpawnPoint1
-	var spawn2 = %SpawnPoint2
-	var spawn3 = %SpawnPoint3
-	var mob_spawn = 10
-	if (game_timer.time_left > 30):
-		var orcSpawn = orc.instantiate()
-		orcSpawn.position = spawn1.position
-		add_child(orcSpawn)
-		print("added")
-
-#
-#func _on_ten_seconds_timeout() -> void:
-	#
+	for i in Global.mobs:
+		spawn_orc()
+		spawn_karen()
 
 func _on_thirty_seconds_timeout() -> void:
-	Global.health += 50
+	for i in Global.mobs:
+		spawn_orc()
+		spawn_karen()
+		
+	Global.health += 250
 	Global.charSpeed += 50
 	Global.orcSpeed += 1
-	Global.Speed += 1
-
-	Global.orcHealth += 100
-	Global.bossHealth += 100
-	Global.karenHealth = 100
+	Global.karenSpeed += 1
 
 	Global.orcDamage += 5
 	Global.bossDamage += 5
@@ -42,9 +53,11 @@ func _on_thirty_seconds_timeout() -> void:
 	Global.explosionDmg += 10
 	Global.fireDmg += 10
 	Global.zoneDmg += 10
+	
+	Global.mobs += 5
+	
 	waves.start()
 	
-
-
-func _on_shield_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
+func _on_boss_spawn_timeout() -> void:
+	spawn_boss()
+	bossSpawn.start()

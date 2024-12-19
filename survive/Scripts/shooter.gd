@@ -4,19 +4,22 @@ class_name Player
 @export var fireball: Resource
 @export var qSkill: Resource
 @export var rSkill: Resource
+@onready var walking: AudioStreamPlayer2D = $walking
 
 @export var move_speed: float = 200.0
 
 @export var qSkill_timer: Timer
 @export var eSkill_timer: Timer
 @export var eCooldown: Timer
+@export var rSkill_timer: Timer
 
 @export var game_timer: Timer
+@export_range(0,2*PI) var alpha: float = 0.0
 
 var qGo = true
 var eGo = true
 var rGo = true
-	
+var theta: float = 0.0
 
 func _input(event):
 	if (event is InputEventMouseButton):
@@ -45,12 +48,26 @@ func _input(event):
 			%PlayerBody.disabled = true
 			eSkill_timer.start()
 		
-		if (even.is_pressed() and event.keycode == KEY_R and rGo == true)
+		if (event.is_pressed() and event.keycode == KEY_R and rGo == true):
 			rGo = false
-			new_r = rSkill.intstantiate()
+			var new_r = rSkill.instantiate()
+			get_parent().add_child(new_r)
+			var r_forward = position.direction_to(get_global_mouse_position())
+			new_r.fire(r_forward, 300.0)
+			new_r.position = position
+			rSkill_timer.start()
 			
-			
+
+func shoot(angle):
+	var bullet = rSkill.instantiate()
+ 
+	bullet.position = global_position
 	
+	get_tree().current_scene.call_deferred("add_child",bullet)
+	
+func _on_r_skill_timeout() -> void:
+	rGo = true
+
 func _on_q_skill_timeout() -> void:
 	qGo = true
 
@@ -74,6 +91,7 @@ func _physics_process(delta):
 		$Player.visible = false
 		$Idle.visible = true
 	else:
+		#walking.play()
 		$Player.visible = true
 		$Idle.visible = false
 		if (angle > 0 and angle < 60):

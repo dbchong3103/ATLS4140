@@ -18,6 +18,24 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 
 Global="*res://Scripts/global.gd"
 
+[filesystem]
+
+import/fbx2gltf/enabled.android=true
+import/fbx2gltf/enabled.web=true
+import/blender/enabled.android=true
+import/blender/enabled.web=true
+
+[importer_defaults]
+
+wav={
+"edit/loop_mode": 2,
+"edit/normalize": true,
+"edit/trim": true,
+"force/8_bit": true,
+"force/max_rate": true,
+"force/mono": true
+}
+
 [input]
 
 move_up={

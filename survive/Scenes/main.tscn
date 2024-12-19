@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cr56mwfqnp8wj"]
+[gd_scene load_steps=46 format=3 uid="uid://cr56mwfqnp8wj"]
 
 [ext_resource type="Texture2D" uid="uid://bcfcrpi7xm7io" path="res://Assets/Environment/Dungeon Prison/Assets/Tiles.png" id="1_avwyr"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_c67fu"]
@@ -9,17 +9,17 @@
 [ext_resource type="PackedScene" uid="uid://ce156f0iaduji" path="res://Scenes/shooter.tscn" id="4_ioope"]
 [ext_resource type="PackedScene" uid="uid://bb1b6vo07kjeh" path="res://Scenes/karen.tscn" id="5_nxryc"]
 [ext_resource type="PackedScene" uid="uid://c7p38m5021yln" path="res://Scenes/fireball.tscn" id="6_o2rbl"]
-[ext_resource type="Script" path="res://Scripts/shooter.gd" id="9_3udyd"]
 [ext_resource type="PackedScene" uid="uid://bedo4qy2h1qcy" path="res://Scenes/explosives.tscn" id="11_f3n7o"]
-[ext_resource type="Script" path="res://Scripts/boss.gd" id="12_4gtv0"]
+[ext_resource type="PackedScene" uid="uid://dcj01tyj2tpu3" path="res://Scenes/slice.tscn" id="11_ovgkf"]
 [ext_resource type="Script" path="res://Scripts/score.gd" id="12_hhmr6"]
 [ext_resource type="Texture2D" uid="uid://belpc1gileq4v" path="res://Assets/Main Ship - Shields - Round Shield.png" id="12_kw2ym"]
-[ext_resource type="PackedScene" uid="uid://b8afsm0le5rqy" path="res://Scenes/boss_pew.tscn" id="13_8238i"]
 [ext_resource type="Script" path="res://Scripts/q_skill_cooldown.gd" id="13_gwbrg"]
 [ext_resource type="Theme" uid="uid://cyo7vfdybcdc5" path="res://Scenes/interface.tres" id="14_w1ywr"]
 [ext_resource type="Script" path="res://Scripts/e_skill_cooldown.gd" id="16_3vk86"]
 [ext_resource type="Script" path="res://Scripts/label.gd" id="16_mpobp"]
 [ext_resource type="Script" path="res://Scripts/time_elasped.gd" id="18_58mya"]
+[ext_resource type="AudioStream" uid="uid://3r4urvgcueku" path="res://Assets/Sounds/music/Goblins_Dance_(Battle).wav" id="20_my3m0"]
+[ext_resource type="Script" path="res://Scripts/r_skill_cooldown.gd" id="21_7weja"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_60owl"]
 resource_name = "Atlas"
@@ -1771,12 +1771,19 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="main" type="Node2D" node_paths=PackedStringArray("waves")]
+[sub_resource type="Curve2D" id="Curve2D_swdin"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -32, -54, 0, 0, 0, 0, 1195, -54, 0, 0, 0, 0, 1195, 683, 0, 0, 0, 0, -26, 667, 0, 0, 0, 0, -26, 335, 0, 0, 0, 0, -32, -54)
+}
+point_count = 6
+
+[node name="main" type="Node2D" node_paths=PackedStringArray("waves", "bossSpawn")]
 script = ExtResource("1_c67fu")
 orc = ExtResource("2_p6o1g")
 karen = ExtResource("5_nxryc")
 boss = ExtResource("4_40mkh")
 waves = NodePath("Timers/thirtySeconds")
+bossSpawn = NodePath("Timers/BossSpawn")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 
@@ -1796,16 +1803,17 @@ tile_set = SubResource("TileSet_cslt8")
 format = 2
 layer_0/tile_data = PackedInt32Array(66, 327680, 10, 67, 393216, 10, 46, 327680, 10, 47, 393216, 10, 25, 327680, 10, 26, 393216, 10, 5, 327680, 10, 6, 393216, 10, 65602, 327680, 13, 65603, 393216, 13, 65582, 327680, 13, 65583, 393216, 13, 65561, 327680, 13, 65562, 393216, 13, 65541, 327680, 13, 65542, 393216, 13, 2359363, 655360, 0, 2424899, 655360, 1, 2490435, 655360, 2, 2555971, 655360, 3, 2359364, 720896, 0, 2424900, 720896, 1, 2490436, 720896, 2, 2555972, 720896, 3, 2359365, 786432, 0, 2424901, 786432, 1, 2490437, 786432, 2, 2555973, 786432, 3, 2359366, 851968, 0, 2424902, 851968, 1, 2490438, 851968, 2, 2555974, 851968, 3, 1769525, 655360, 0, 1835061, 655360, 1, 1900597, 655360, 2, 1966133, 655360, 3, 1769526, 720896, 0, 1835062, 720896, 1, 1900598, 720896, 2, 1966134, 720896, 3, 1769527, 786432, 0, 1835063, 786432, 1, 1900599, 786432, 2, 1966135, 786432, 3, 1769528, 851968, 0, 1835064, 851968, 1, 1900600, 851968, 2, 1966136, 851968, 3, 1179673, 655360, 0, 1245209, 655360, 1, 1310745, 655360, 2, 1376281, 655360, 3, 1179674, 720896, 0, 1245210, 720896, 1, 1310746, 720896, 2, 1376282, 720896, 3, 1179675, 786432, 0, 1245211, 786432, 1, 1310747, 786432, 2, 1376283, 786432, 3, 1179676, 851968, 0, 1245212, 851968, 1, 1310748, 851968, 2, 1376284, 851968, 3, 1376256, 655360, 0, 1441792, 655360, 1, 1507328, 655360, 2, 1572864, 655360, 3, 1376257, 720896, 0, 1441793, 720896, 1, 1507329, 720896, 2, 1572865, 720896, 3, 1376258, 786432, 0, 1441794, 786432, 1, 1507330, 786432, 2, 1572866, 786432, 3, 1376259, 851968, 0, 1441795, 851968, 1, 1507331, 851968, 2, 1572867, 851968, 3, 720909, 655360, 0, 786445, 655360, 1, 851981, 655360, 2, 917517, 655360, 3, 720910, 720896, 0, 786446, 720896, 1, 851982, 720896, 2, 917518, 720896, 3, 720911, 786432, 0, 786447, 786432, 1, 851983, 786432, 2, 917519, 786432, 3, 720912, 851968, 0, 786448, 851968, 1, 851984, 851968, 2, 917520, 851968, 3, 2359296, 655360, 4, 2424832, 655360, 5, 2490368, 655360, 6, 2162688, 655360, 4, 2228224, 655360, 5, 2293760, 655360, 6, 15, 1, 12, 65551, 1, 13, 11, 1, 12, 65547, 1, 13, 34, 65537, 12, 65570, 65537, 13, 38, 65537, 12, 65574, 65537, 13, 55, 131073, 12, 65591, 131073, 13, 59, 131073, 12, 65595, 131073, 13)
 
-[node name="Shooter" parent="." node_paths=PackedStringArray("qSkill_timer", "eSkill_timer", "eCooldown", "game_timer") instance=ExtResource("4_ioope")]
+[node name="Shooter" parent="." node_paths=PackedStringArray("qSkill_timer", "eSkill_timer", "eCooldown", "rSkill_timer", "game_timer") instance=ExtResource("4_ioope")]
 position = Vector2(581, 306)
-script = ExtResource("9_3udyd")
 fireball = ExtResource("6_o2rbl")
 qSkill = ExtResource("11_f3n7o")
-move_speed = null
+rSkill = ExtResource("11_ovgkf")
 qSkill_timer = NodePath("../Timers/qSkill")
 eSkill_timer = NodePath("../Timers/eSkill")
 eCooldown = NodePath("../Timers/eCooldown")
+rSkill_timer = NodePath("../Timers/rSkill")
 game_timer = NodePath("../Timers/GameTimer")
+alpha = 0.898
 
 [node name="Shield" type="Area2D" parent="Shooter"]
 unique_name_in_owner = true
@@ -1828,33 +1836,6 @@ sprite_frames = SubResource("SpriteFrames_e1ely")
 autoplay = "default"
 frame_progress = 0.0378167
 
-[node name="Orc" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_p6o1g")]
-player = NodePath("../Shooter")
-
-[node name="Karen" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_nxryc")]
-player = NodePath("../Shooter")
-
-[node name="Boss" parent="." node_paths=PackedStringArray("player", "timer") instance=ExtResource("4_40mkh")]
-position = Vector2(151, 338)
-script = ExtResource("12_4gtv0")
-player = NodePath("../Shooter")
-pew = ExtResource("13_8238i")
-timer = NodePath("../Timers/SliceTimer")
-
-[node name="Spawner" type="Node2D" parent="."]
-
-[node name="SpawnPoint1" type="Marker2D" parent="Spawner"]
-unique_name_in_owner = true
-position = Vector2(217, 51)
-
-[node name="SpawnPoint2" type="Marker2D" parent="Spawner"]
-unique_name_in_owner = true
-position = Vector2(583, 52)
-
-[node name="SpawnPoint3" type="Marker2D" parent="Spawner"]
-unique_name_in_owner = true
-position = Vector2(917, 54)
-
 [node name="Timers" type="Node" parent="."]
 
 [node name="GameTimer" type="Timer" parent="Timers"]
@@ -1871,24 +1852,24 @@ unique_name_in_owner = true
 wait_time = 5.0
 one_shot = true
 
-[node name="SliceTimer" type="Timer" parent="Timers"]
-unique_name_in_owner = true
-one_shot = true
-autostart = true
-
-[node name="SpawnTimer" type="Timer" parent="Timers"]
-unique_name_in_owner = true
-
 [node name="tenSeconds" type="Timer" parent="Timers"]
-wait_time = 10.0
+wait_time = 2.0
 autostart = true
 
 [node name="thirtySeconds" type="Timer" parent="Timers"]
-wait_time = 30.0
+wait_time = 15.0
 autostart = true
 
 [node name="eCooldown" type="Timer" parent="Timers"]
 wait_time = 7.0
+
+[node name="rSkill" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+wait_time = 15.0
+
+[node name="BossSpawn" type="Timer" parent="Timers"]
+wait_time = 10.0
+autostart = true
 
 [node name="Labels" type="Node" parent="."]
 
@@ -1945,10 +1926,37 @@ text = "Time:"
 script = ExtResource("18_58mya")
 game_timer = NodePath("../../Timers/GameTimer")
 
+[node name="rSkillCooldown" type="Label" parent="Labels" node_paths=PackedStringArray("game_timer")]
+offset_left = 966.0
+offset_top = 606.0
+offset_right = 1006.0
+offset_bottom = 629.0
+theme = ExtResource("14_w1ywr")
+theme_override_font_sizes/font_size = 20
+text = "R:"
+script = ExtResource("21_7weja")
+game_timer = NodePath("../../Timers/rSkill")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_swdin")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+unique_name_in_owner = true
+position = Vector2(-32, -54)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(156, 338)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("20_my3m0")
+autoplay = true
+bus = &"Music"
+
 [connection signal="body_entered" from="Shooter/Shield" to="Shooter" method="_on_shield_body_entered"]
 [connection signal="timeout" from="Timers/qSkill" to="Shooter" method="_on_q_skill_timeout"]
 [connection signal="timeout" from="Timers/eSkill" to="Shooter" method="_on_e_skill_timeout"]
-[connection signal="timeout" from="Timers/SliceTimer" to="Boss" method="_on_slice_timer_timeout"]
 [connection signal="timeout" from="Timers/tenSeconds" to="." method="_on_ten_seconds_timeout"]
 [connection signal="timeout" from="Timers/thirtySeconds" to="." method="_on_thirty_seconds_timeout"]
 [connection signal="timeout" from="Timers/eCooldown" to="Shooter" method="_on_e_cooldown_timeout"]
+[connection signal="timeout" from="Timers/rSkill" to="Shooter" method="_on_r_skill_timeout"]
+[connection signal="timeout" from="Timers/BossSpawn" to="." method="_on_boss_spawn_timeout"]
